@@ -1,3 +1,9 @@
+-- Allow Neovim to find luarocks packages installed for Lua 5.1 (LuaJIT)
+local lr = vim.fn.expand "$APPDATA/luarocks"
+package.path  = package.path  .. ";" .. lr .. "/share/lua/5.1/?.lua"
+package.path  = package.path  .. ";" .. lr .. "/share/lua/5.1/?/init.lua"
+package.cpath = package.cpath .. ";" .. lr .. "/lib/lua/5.1/?.dll"
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
