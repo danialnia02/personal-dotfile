@@ -1,0 +1,13 @@
+[filetype]
+rules = [
+  { mime = "image/*",                                                                                             fg = "yellow"  },
+  { mime = "{audio,video}/*",                                                                                     fg = "magenta" },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}",      fg = "red"     },
+  { mime = "application/{pdf,doc,rtf}",                                                                          fg = "cyan"    },
+  { mime = "vfs/{absent,stale}",                                                                                  fg = "gray"    },
+  { url = "*",  is = "orphan", bg = "red" },
+  { url = "*",  is = "exec",   fg = "green" },
+  { url = "*",  is = "dummy",  bg = "red" },
+  { url = "*/", is = "dummy",  bg = "red" },
+  { url = "*/",                fg = "#E5C07B" },
+]
