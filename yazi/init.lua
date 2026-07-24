@@ -8,12 +8,12 @@ local function fmt_ts(ts)
 	for part in r:gmatch("[^|]+") do p[#p + 1] = part end
 	if #p ~= 6 then return string.rep(" ", 20) end
 
-	local d    = tostring(tonumber(p[1]))  -- "09" -> "9"
-	local m    = tostring(tonumber(p[2]))  -- "07" -> "7"
+	local d    = tostring(tonumber(p[1]))
+	local m    = tostring(tonumber(p[2]))
 	local y    = p[3]
-	local h    = tostring(tonumber(p[4]))  -- "03" -> "3"
+	local h    = tostring(tonumber(p[4]))
 	local min  = p[5]
-	local ampm = p[6]:lower()             -- "AM" -> "am"
+	local ampm = p[6]:lower()
 
 	return string.format("%s/%s/%s, %s:%s %s", d, m, y, h, min, ampm)
 end
@@ -33,23 +33,45 @@ local function fmt_size(len, is_dir)
 	else return string.format("%5dB", len) end
 end
 
+-- Responsive column content based on panel width:
+--   wide  (>= 70): Date modified  Type  Size
+--   medium(>= 50): Date modified  Size
+--   narrow(< 50) : Size only
+local function make_line(w, mtime, ftype, fsize)
+	if w >= 70 then
+		return string.format("  %-20.20s  %-13.13s  %6s", mtime, ftype, fsize)
+	elseif w >= 50 then
+		return string.format("  %-20.20s  %6s", mtime, fsize)
+	else
+		return string.format("  %6s", fsize)
+	end
+end
+
+local function make_hdr(w)
+	if w >= 70 then
+		return string.format("  %-20.20s  %-13.13s  %6s", "Date modified", "Type", "Size")
+	elseif w >= 50 then
+		return string.format("  %-20.20s  %6s", "Date modified", "Size")
+	else
+		return string.format("  %6s", "Size")
+	end
+end
+
+-- Shared panel width, set by Current:redraw before orig_redraw iterates files
+local PANEL_W = 0
+
 -- Linemode: only show in the current (middle) pane
 Linemode.size_and_mtime = function(self)
 	if not self._file.in_current then return ui.Line("") end
 	local cha = self._file.cha
 	local url = self._file.url
-	return ui.Line(string.format(
-		"  %-20.20s  %-13.13s  %6s  %-20.20s",
-		fmt_ts(cha.mtime), fmt_type(cha, url), fmt_size(cha.len, cha.is_dir), fmt_ts(cha.btime)
-	))
+	return ui.Line(make_line(PANEL_W, fmt_ts(cha.mtime), fmt_type(cha, url), fmt_size(cha.len, cha.is_dir)))
 end
 
--- Column header row
-local COL_HDR = string.format(
-	"  %-20.20s  %-13.13s  %6s  %-20.20s",
-	"Date modified", "Type", "Size", "Date created"
-)
-
+-- Shrink the panel height from the bottom (NOT the top) so that self._area.y
+-- stays at its natural value. Yazi's cursor-highlight uses the natural layout
+-- y, so keeping y unchanged makes cursor alignment correct. The column-header
+-- row is placed at the last row of the original area (below the file list).
 if type(Current) == "table" and type(Current.redraw) == "function" then
 	local orig_redraw = Current.redraw
 	function Current:redraw()
@@ -58,16 +80,21 @@ if type(Current) == "table" and type(Current.redraw) == "function" then
 			return orig_redraw(self)
 		end
 
-		self._area = ui.Rect { x = area.x, y = area.y + 1, w = area.w, h = area.h - 1 }
+		PANEL_W = area.w
+
+		self._area = ui.Rect { x = area.x, y = area.y, w = area.w, h = area.h - 1 }
 		local ok, result = pcall(orig_redraw, self)
-		self._area = area
+		self._area = area  -- restore so post-redraw cursor computation uses natural area
 
-		if not ok then return orig_redraw(self) end
+		if not ok then
+			self._area = area
+			return orig_redraw(self)
+		end
 
-		local ha     = ui.Rect { x = area.x, y = area.y, w = area.w, h = 1 }
+		local ha     = ui.Rect { x = area.x, y = area.y + area.h - 1, w = area.w, h = 1 }
 		local hstyle = ui.Style():bold()
 		table.insert(result, ui.Line(ui.Span(" Name"):style(hstyle)):area(ha))
-		table.insert(result, ui.Text(ui.Line(ui.Span(COL_HDR):style(hstyle))):area(ha):align(ui.Align.RIGHT))
+		table.insert(result, ui.Text(ui.Line(ui.Span(make_hdr(area.w)):style(hstyle))):area(ha):align(ui.Align.RIGHT))
 		return result
 	end
 end

@@ -18,9 +18,10 @@ return {
     {
       "<cr>",
       function()
-        return require("obsidian").smart_action()
+        return require("obsidian").util.smart_action()
       end,
       ft = "markdown",
+      expr = true,
       desc = "Obsidian: Smart Action, depending on context",
     },
   },

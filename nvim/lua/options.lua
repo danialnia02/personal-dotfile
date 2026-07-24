@@ -6,4 +6,14 @@ local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 o.scrolloff = 10
 o.fsync = false
+o.backupcopy = "yes"
+o.writebackup = false
+o.number = true
+o.relativenumber = true
 vim.opt.shortmess:append "A"
+
+-- Folding via treesitter — works for code and markdown headings
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevelstart = 99  -- open all folds when a file is opened
+vim.opt.foldenable = true

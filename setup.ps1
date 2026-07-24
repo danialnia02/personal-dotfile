@@ -25,10 +25,7 @@ Write-Host "`nWezTerm"
 Link-File "$env:USERPROFILE\.wezterm.lua" "$dotfiles\wezterm\.wezterm.lua"
 
 Write-Host "`nYazi"
-New-Item -ItemType Directory -Force "$env:APPDATA\yazi\config" | Out-Null
-Link-File "$env:APPDATA\yazi\config\yazi.toml"  "$dotfiles\yazi\yazi.toml"
-Link-File "$env:APPDATA\yazi\config\init.lua"   "$dotfiles\yazi\init.lua"
-Link-File "$env:APPDATA\yazi\config\theme.toml" "$dotfiles\yazi\theme.toml"
+Link-Dir "$env:APPDATA\yazi\config" "$dotfiles\yazi"
 
 Write-Host "`nNeovim"
 Link-Dir "$env:LOCALAPPDATA\nvim" "$dotfiles\nvim"
