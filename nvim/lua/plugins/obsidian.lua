@@ -20,6 +20,7 @@ return {
       function()
         return require("obsidian").smart_action()
       end,
+      ft = "markdown",
       desc = "Obsidian: Smart Action, depending on context",
     },
   },

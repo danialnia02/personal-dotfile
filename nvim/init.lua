@@ -62,3 +62,35 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal commentstring=//\\ %s",
 })
 
+-- Telescope: show placeholder text for image files instead of a blank pane.
+-- image.nvim is not used (unsupported on Windows), so this is the fallback.
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    vim.defer_fn(function()
+      local ok, conf = pcall(require, "telescope.config")
+      if not ok then return end
+      local previewers = require "telescope.previewers"
+      local image_exts = {
+        jpg=1, jpeg=1, png=1, gif=1, bmp=1, webp=1,
+        ico=1, tiff=1, tif=1, heic=1, avif=1, svg=1,
+      }
+      local orig = conf.values.buffer_previewer_maker or previewers.buffer_previewer_maker
+      conf.values.buffer_previewer_maker = function(filepath, bufnr, opts)
+        local ext = filepath:match "%.([^%.]+)$"
+        if ext and image_exts[ext:lower()] then
+          vim.schedule(function()
+            if vim.api.nvim_buf_is_valid(bufnr) then
+              local name = vim.fn.fnamemodify(filepath, ":t")
+              vim.api.nvim_buf_set_lines(bufnr, 0, -1, false,
+                { "", "  [" .. ext:upper() .. "]  " .. name })
+            end
+          end)
+        else
+          orig(filepath, bufnr, opts)
+        end
+      end
+    end, 300)
+  end,
+})
+

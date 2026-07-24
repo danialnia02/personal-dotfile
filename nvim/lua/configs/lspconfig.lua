@@ -1,45 +1,22 @@
--- load defaults i.e lua_lsp
-require("nvchad.configs.lspconfig").defaults()
-
-local lspconfig = require "lspconfig"
-
--- EXAMPLE
-local servers = { "html", "cssls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
-end
-
-lspconfig.vtsls.setup {
+-- Apply common config to every server
+vim.lsp.config("*", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
-}
+})
 
-lspconfig.marksman.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
+-- Per-server overrides
+vim.lsp.config("marksman", {
   filetypes = { "markdown" },
-}
+})
 
-lspconfig.lua_ls.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("lua_ls", {
   filetypes = { "lua" },
-}
+})
 
-lspconfig.pylsp.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("pylsp", {
   settings = {
     pylsp = {
       plugins = {
@@ -50,44 +27,22 @@ lspconfig.pylsp.setup {
       },
     },
   },
-}
+})
 
-lspconfig.kotlin_language_server.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-}
-
-lspconfig.clangd.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("clangd", {
   filetypes = { "c", "cpp", "objc", "objcpp", "arduino", "ino" },
   settings = {
     clangd = {
       clangdFileStatus = true,
       formatting = {
-        style = {
-          ColumnLimit = 200,
-        },
+        style = { ColumnLimit = 200 },
       },
     },
   },
-}
+})
 
-
-lspconfig.jdtls.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("jdtls", {
   filetypes = { "java" },
-  -- cmd = {
-  --   "jdtls",
-  --   "-configuration",
-  --   "C:/Users/daani/AppData/Local/nvim-data/mason/bin",
-  --   "-data",
-  --   "C:/Users/daani/.cache/jdtls/config",
-  -- },
   cmd = {
     "C:/Users/daani/AppData/Local/nvim-data/mason/bin/jdtls.cmd",
     "-configuration",
@@ -95,4 +50,16 @@ lspconfig.jdtls.setup {
     "-data",
     "/home/user/.cache/jdtls/workspace",
   },
+})
+
+vim.lsp.enable {
+  "html",
+  "cssls",
+  "vtsls",
+  "marksman",
+  "lua_ls",
+  "pylsp",
+  "kotlin_language_server",
+  "clangd",
+  "jdtls",
 }
