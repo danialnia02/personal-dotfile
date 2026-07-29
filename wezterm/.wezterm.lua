@@ -7,6 +7,7 @@ config = {
 	default_cwd = os.getenv("USERPROFILE") .. "\\Desktop",
 	default_prog = { "pwsh.exe" },
 	automatically_reload_config = true,
+	enable_kitty_graphics = true,
 	window_close_confirmation = "NeverPrompt",
 	initial_cols = 130,
 	initial_rows = 33,

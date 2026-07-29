@@ -13,6 +13,7 @@ return {
     { "<leader>on", "<cmd>ObsidianNew<CR>", desc = "[O]bsidian: New [N]ote" },
     { "<leader>ot", "<cmd>ObsidianNewFromTemplate<CR>", desc = "[O]bsidian: New note from [t]emplate" },
     { "<leader>oT", "<cmd>ObsidianTemplate<CR>", desc = "[b]bsidian: Copy from [T]emplate" },
+    { "<leader>os", "<cmd>ObsidianSearch<CR>", desc = "[O]bsidian: [S]earch" },
     { "<leader>op", "<cmd>ObsidianPasteImg<CR>", desc = "[O]bsidian: [P]aste Image" },
     { "<leader>oc", "<cmd>ObsidianTOC<CR>", desc = "[O]bsidian: Table [o]f Contents" },
     {

@@ -17,3 +17,6 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevelstart = 99  -- open all folds when a file is opened
 vim.opt.foldenable = true
+
+-- ShaDa: only save command history (:) and search history (/), nothing else
+vim.opt.shada = "'0,:100,/100,h"

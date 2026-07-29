@@ -15,7 +15,7 @@ local function fmt_ts(ts)
 	local min  = p[5]
 	local ampm = p[6]:lower()
 
-	return string.format("%s/%s/%s, %s:%s %s", d, m, y, h, min, ampm)
+	return string.format("%s/%s/%s,%s:%s%s", d, m, y, h, min, ampm)
 end
 
 local function fmt_type(cha, url)

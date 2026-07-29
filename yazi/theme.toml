@@ -1,3 +1,11 @@
+[which]
+mask            = { bg = "#1e1e1e" }
+cand            = { fg = "#E5C07B", bold = true }
+rest            = { fg = "#E5C07B" }
+desc            = { fg = "#E5C07B" }
+separator       = "→"
+separator_style = { fg = "#E5C07B" }
+
 [filetype]
 rules = [
   { mime = "image/*",                                                                                             fg = "yellow"  },
