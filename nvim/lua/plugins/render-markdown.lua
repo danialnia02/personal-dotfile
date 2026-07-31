@@ -5,6 +5,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   },
+  enabled = false,
   opts = {
     heading = { sign = false },
     code = { sign = false },

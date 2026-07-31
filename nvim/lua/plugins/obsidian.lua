@@ -48,7 +48,7 @@ return {
       preferred_link_style = "wiki",
       notes_subdir = "inbox",
       new_notes_location = "notes_subdir",
-      wiki_link_func = "use_alias_only",
+      wiki_link_func = "prepend_note_id",
 
       -- naming new file
       ---@param title string|?

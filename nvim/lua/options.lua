@@ -13,10 +13,21 @@ o.relativenumber = true
 vim.opt.shortmess:append "A"
 
 -- Folding via treesitter — works for code and markdown headings
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevelstart = 99  -- open all folds when a file is opened
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
 -- ShaDa: only save command history (:) and search history (/), nothing else
 vim.opt.shada = "'0,:100,/100,h"
+
+-- Restore exact scroll position (not just cursor) when switching buffers
+local view_cache = {}
+vim.api.nvim_create_autocmd("BufLeave", {
+  callback = function() view_cache[vim.api.nvim_get_current_buf()] = vim.fn.winsaveview() end,
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    local view = view_cache[vim.api.nvim_get_current_buf()]
+    if view then vim.fn.winrestview(view) end
+  end,
+})
