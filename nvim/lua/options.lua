@@ -19,6 +19,7 @@ vim.opt.foldenable = true
 
 -- ShaDa: only save command history (:) and search history (/), nothing else
 vim.opt.shada = "'0,:100,/100,h"
+vim.opt.timeoutlen = 200
 
 -- Restore exact scroll position (not just cursor) when switching buffers
 local view_cache = {}

@@ -13,6 +13,7 @@ map("n", "<C-O>", "<C-O>zz")
 map("n", "<C-I>", "<C-I>zz")
 map("n", "<S-G>", "<S-G>zz")
 map("n", "<A-o>", "a<cr>", { desc = "Enter new line at cursork" })
+map("n", "<leader>p", ":put<CR>", { desc = "Paste on new line below" })
 
 map("x", "aa", function()
   require("align").align_to_char {

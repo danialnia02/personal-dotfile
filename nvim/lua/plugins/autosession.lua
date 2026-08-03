@@ -6,7 +6,7 @@ return {
   },
   keys = {
     { "<leader>ww", "<cmd>AutoSession search<CR>", desc = "Session search" },
-    { "<leader>ws", "<cmd>SessionSave<CR>", desc = "Session [s]ave" },
+    { "<leader>ws", "<cmd>AutoSession save<CR>", desc = "Session [s]ave" },
     { "<leader>wd", "<cmd>SessionDelete<CR>", desc = "Session [d]elete" },
   },
   config = function()

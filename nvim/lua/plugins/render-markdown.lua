@@ -5,10 +5,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   },
-  enabled = false,
+  enabled = true,
   opts = {
     heading = { sign = false },
     code = { sign = false },
     sign = { enabled = false },
+    render_modes = { "n", "v", "i", "c" },
   },
 }

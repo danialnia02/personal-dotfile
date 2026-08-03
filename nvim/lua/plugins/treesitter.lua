@@ -7,7 +7,10 @@ return {
   lazy = true,
   opts = {
     indent = { enable = true },
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      disable = { "markdown" },
+    },
   },
   config = function()
     require("nvim-treesitter").setup {}
