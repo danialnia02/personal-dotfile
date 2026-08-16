@@ -17,11 +17,15 @@ max_height  = 900
 edit = [
   { run = 'nvim "%*"', block = true, for = "windows" },
 ]
+extract = [
+  { run = '7z x "%*" -o"%*_extracted"', desc = "Extract here (7-Zip)", for = "windows" },
+]
 
 [open]
 rules = [
   { mime = "text/*",           use = "edit" },
   { mime = "application/json", use = "edit" },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = "extract" },
   { mime = "*",                use = "open" },
 ]
 

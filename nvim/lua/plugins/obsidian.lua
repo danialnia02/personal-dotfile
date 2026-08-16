@@ -15,7 +15,7 @@ return {
     { "<leader>oT", "<cmd>ObsidianTemplate<CR>", desc = "[b]bsidian: Copy from [T]emplate" },
     { "<leader>os", "<cmd>ObsidianSearch<CR>", desc = "[O]bsidian: [S]earch" },
     { "<leader>op", "<cmd>ObsidianPasteImg<CR>", desc = "[O]bsidian: [P]aste Image" },
-    { "<leader>oc", "<cmd>ObsidianTOC<CR>", desc = "[O]bsidian: Table [o]f Contents" },
+    { "<leader>oc", "<cmd>ObsidianTOC<CR>", desc = "[O]bsidian: Table of [C]ontents" },
     {
       "<cr>",
       function()

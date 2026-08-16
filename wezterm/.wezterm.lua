@@ -13,9 +13,17 @@ config = {
 	initial_rows = 33,
 	-- window_decorations = "RESIZE",
 	-- default_cursor_style = "BlinkingBar",
-	color_scheme = "One Half Dark",
-	-- font = wezterm.font("JetBrainsMono NFM Medium"),
-	font = wezterm.font("Cascadia Mono"),
+	-- color_scheme = "One Half Dark",
+	font = wezterm.font("JetBrainsMono NFM Medium"),
+  -- font = wezterm.font("CaskaydiaMono Nerd Font"), -- font size 12
+  -- font = wezterm.font("MonaspiceNe NF"), -- font size 11
+  -- font = wezterm.font("MonaspiceNe NF Medium"), -- font size 11
+  -- font = wezterm.font("MonaspiceNe NFP"), -- font size 11
+  -- font = wezterm.font("MonaspiceNe NFM"), -- font size 11
+  -- font = wezterm.font("FiraCode Nerd Font"), -- font size 11
+  -- font = wezterm.font("FiraCode Nerd Font Propo"), -- font size 11
+  -- font = wezterm.font("FiraCode Nerd Font Mono"), -- font size 11
+	-- font = wezterm.font("Cascadia Mono"),
 	font_size = 11,
 	-- font_size = 14,
 	window_padding = {
@@ -33,13 +41,16 @@ config = {
 			background = "rgba(0,0,0,0)",
 		},
 	},
-	window_background_opacity = 0.80,
+	window_background_opacity = 0.70,
+	-- window_background_opacity = 0.05,
+	-- win32_system_backdrop = "Acrylic",
 	-- tab bars
 	-- enable_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = false,
 	tab_bar_at_bottom = true,
 	use_fancy_tab_bar = false,
 	tab_max_width = 17,
+	show_new_tab_button_in_tab_bar = false,
 
 	foreground_text_hsb = {
 		hue = 1.0,
@@ -68,16 +79,16 @@ local function tab_title(tab_info)
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local edge_background = "#333333"
-	local background = "#1b1032"
-	local foreground = "#808080"
+	local edge_background = "#080808"
+	local background = "#080808"
+	local foreground = "#aaaaaa"
 
 	if tab.is_active then
-		background = "#2b2042"
-		foreground = "#c0c0c0"
+		background = "#1c1c1c"
+		foreground = "#ffffff"
 	elseif hover then
-		background = "#3b3052"
-		foreground = "#909090"
+		background = "#111111"
+		foreground = "#cccccc"
 	end
 
 	local edge_foreground = background
@@ -126,14 +137,29 @@ config.keys = {
 	{ action = wezterm.action.SendKey({ key = "\\" }), mods = "CTRL", key = "\\" }, -- send \ string
 	{ action = wezterm.action.MoveTabRelative(1), mods = "LEADER", key = "." }, -- shift tab to right
 	{ action = wezterm.action.MoveTabRelative(-1), mods = "LEADER", key = "," }, -- shift tab to left
+	{
+		action = wezterm.action_callback(function(window, _)
+			local overrides = window:get_config_overrides() or {}
+			if overrides.window_decorations == "INTEGRATED_BUTTONS | RESIZE" then
+				overrides.window_decorations = "TITLE | RESIZE"
+			else
+				overrides.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+			end
+			window:set_config_overrides(overrides)
+		end),
+		mods = "LEADER",
+		key = "Tab",
+	},
 
 	{
 		action = wezterm.action_callback(function(window, _)
 			local overrides = window:get_config_overrides() or {}
-			if overrides.window_background_opacity == 0.80 then
+			-- if overrides.window_background_opacity == 0.80 then
+			if overrides.window_background_opacity == 0.70 then
 				overrides.window_background_opacity = 1
 			else
-				overrides.window_background_opacity = 0.80
+				-- overrides.window_background_opacity = 0.80
+				overrides.window_background_opacity = 0.70
 			end
 			window:set_config_overrides(overrides)
 		end),

@@ -1,4 +1,9 @@
 [[manager.prepend_keymap]]
+on  = "cz"
+run = 'shell --confirm "7z a \"%*\".zip %*"'
+desc = "Compress selected to zip"
+
+[[manager.prepend_keymap]]
 on  = "e"
-run = 'shell "explorer $0" --confirm'
+run = 'shell --orphan "explorer ."'
 desc = "Open current directory in File Explorer"
