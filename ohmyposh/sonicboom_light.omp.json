@@ -17,32 +17,6 @@
         },
         {
           "properties": {
-            "alpine": "",
-            "arch": "",
-            "cache_duration": "none",
-            "centos": "",
-            "debian": "",
-            "elementary": "",
-            "fedora": "",
-            "gentoo": "",
-            "linux": "",
-            "macos": "",
-            "manjaro": "",
-            "mint": "",
-            "opensuse": "",
-            "raspbian": "",
-            "ubuntu": "",
-            "windows": "",
-            "wsl": ""
-          },
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
-          "foreground": "#ffffff",
-          "background": "#000000",
-          "type": "os",
-          "style": "plain"
-        },
-        {
-          "properties": {
             "cache_duration": "none",
             "folder_icon": "",
             "folder_separator_icon": "<transparent>  </>",

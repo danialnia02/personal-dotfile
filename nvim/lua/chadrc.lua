@@ -129,7 +129,12 @@ M.nvdash = {
 
 M.ui = {
   tabufline = {
-    order = { "treeOffset", "buffers", "tabs" },
+    order = { "treeOffset", "buffers", "tabs", "datetime" },
+    modules = {
+      datetime = function()
+        return "%#TbBufOff# " .. os.date("%H:%M  %d/%m/%Y") .. " "
+      end,
+    },
   },
   statusline = {
     modules = {

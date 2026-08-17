@@ -7,3 +7,8 @@ desc = "Compress selected to zip"
 on  = "e"
 run = 'shell --orphan "explorer ."'
 desc = "Open current directory in File Explorer"
+
+[[manager.prepend_keymap]]
+on  = "gw"
+run = 'shell --confirm "echo hello"'
+desc = "Open new terminal tab in current directory"
