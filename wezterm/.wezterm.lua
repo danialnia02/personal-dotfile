@@ -136,11 +136,11 @@ config.keys = {
       if overrides.window_decorations == "INTEGRATED_BUTTONS | RESIZE" then
         overrides.window_decorations = "TITLE | RESIZE"
         -- overrides.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
-        overrides.window_padding = { left = 0, right = 0, top = 40, bottom = 0 }
+        overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
       else
         overrides.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
         -- overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
-        overrides.window_padding = { left = 0, right = 0, top = 40, bottom = 0 }
+        overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
       end
       window:set_config_overrides(overrides)
     end),

@@ -1,6 +1,6 @@
 # personal-dotfile
 
-Config files for WezTerm, Yazi, Neovim, YASB, and Komorebi — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
+Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Tacky Borders, and Spicetify — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
 
 ## Structure
 
@@ -11,6 +11,8 @@ dotfiles/
   nvim/             # Neovim config
   yasb/             # YASB status bar config (config.yaml, styles.css)
   komorebi/         # Komorebi tiling window manager config (komorebi.json, whkdrc)
+  tacky-borders/    # Tacky Borders config (config.yaml)
+  spicetify/        # Spicetify config (config-xpui.ini, Themes/tui, Extensions)
   windhawk/         # Windhawk mod settings, synced via registry export/import (see below)
   setup.ps1         # Setup script for new machines
 ```
@@ -94,6 +96,28 @@ Start it manually with `Start-Process whkd -WindowStyle Hidden`, or reload its b
 
 ```powershell
 komorebic enable-autostart --whkd
+```
+
+### 9. Tacky Borders
+
+Not on winget — download the release binary and run it once so it creates `%USERPROFILE%\.config\tacky-borders\config.yaml`. `setup.ps1` then symlinks that to `tacky-borders/config.yaml` in this repo.
+
+After editing the config, apply it without restarting with:
+
+```powershell
+tacky-borders reload
+```
+
+### 10. Spicetify
+
+Install spicetify (and add it to PATH) per its own install docs, then run `spicetify` once so it creates `%APPDATA%\spicetify\config-xpui.ini`. `setup.ps1` then symlinks that to `spicetify/config-xpui.ini` in this repo.
+
+Tracked: `config-xpui.ini`, `Themes/tui` (a hand-authored theme, junctioned in), and the whole `Extensions` folder (junctioned wholesale, since — unlike `Themes` — Marketplace doesn't put anything of its own in there). Not tracked: `Themes/marketplace`, `CustomApps/marketplace`, `Backup`, and `Extracted` under `%APPDATA%\spicetify` — those are auto-managed by spicetify/Marketplace or are machine-specific backups, not hand-authored config. Add more of your own themes the same way: create `spicetify/Themes/<name>` in this repo and a matching `Link-Dir` line in `setup.ps1`.
+
+After editing the config (or picking a new theme), apply it with:
+
+```powershell
+spicetify apply
 ```
 
 ## Making changes

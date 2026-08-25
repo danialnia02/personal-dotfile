@@ -50,6 +50,7 @@ bars:
       - volume
       - battery
       - wallpapers
+      - systray
       - power_menu
 widgets:
   home:
@@ -227,6 +228,20 @@ widgets:
   battery:
     type: yasb.battery.BatteryWidget
     options: {}
+  systray:
+    type: yasb.systray.SystrayWidget
+    options:
+      icon_size: 16
+      show_unpinned: true
+      show_unpinned_button: true
+      show_in_popup: true
+      popup:
+        blur: true
+        round_corners: true
+        round_corners_type: normal
+        border_color: System
+        alignment: right
+        direction: down
   pomodoro:
     type: yasb.pomodoro.PomodoroWidget
     options: 

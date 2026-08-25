@@ -40,4 +40,15 @@ Write-Host "`nKomorebi"
 Link-File "$env:USERPROFILE\komorebi.json" "$dotfiles\komorebi\komorebi.json"
 Link-File "$env:USERPROFILE\.config\whkdrc" "$dotfiles\komorebi\whkdrc"
 
+Write-Host "`nTacky Borders"
+New-Item -ItemType Directory -Path "$env:USERPROFILE\.config\tacky-borders" -Force | Out-Null
+Link-File "$env:USERPROFILE\.config\tacky-borders\config.yaml" "$dotfiles\tacky-borders\config.yaml"
+
+Write-Host "`nSpicetify"
+New-Item -ItemType Directory -Path "$env:APPDATA\spicetify" -Force | Out-Null
+Link-File "$env:APPDATA\spicetify\config-xpui.ini" "$dotfiles\spicetify\config-xpui.ini"
+New-Item -ItemType Directory -Path "$env:APPDATA\spicetify\Themes" -Force | Out-Null
+Link-Dir "$env:APPDATA\spicetify\Themes\tui" "$dotfiles\spicetify\Themes\tui"
+Link-Dir "$env:APPDATA\spicetify\Extensions" "$dotfiles\spicetify\Extensions"
+
 Write-Host "`nDone. All configs linked from $dotfiles"
