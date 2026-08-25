@@ -6,6 +6,10 @@ watch_stylesheet: true
 watch_config: true
 debug: false
 update_check: true
+komorebi:
+  start_command: "komorebic start --whkd && komorebic start --whkd"
+  stop_command: "komorebic stop --whkd"
+  reload_command: "komorebic stop --whkd && komorebic start --whkd"
 bars:
   primary-bar:
     enabled: true
@@ -19,7 +23,7 @@ bars:
       enabled: true
       duration: 300
     blur_effect:
-      enabled: true
+      enabled: false
       round_corners: true
     window_flags:
       always_on_top: false
@@ -29,12 +33,13 @@ bars:
       height: 34
     padding:
       top: 2
-      left: 4
+      left: 2
       bottom: 2
-      right: 4
+      right: 2
     widgets:
       left:
       - home
+      - komorebi_control
       - taskbar
       center:
       - clock
@@ -44,6 +49,7 @@ bars:
       - wifi
       - volume
       - battery
+      - wallpapers
       - power_menu
 widgets:
   home:
@@ -67,6 +73,27 @@ widgets:
       border_color: System
       alignment: left
       offset_left: -12
+  komorebi_control:
+      type: "komorebi.control.KomorebiControlWidget"
+      options:
+        label: "<span>\udb80\uddd9</span>"
+        icons:
+          start: "\uead3"
+          stop: "\uead7"
+          reload: "\uead2"
+        run_ahk: false
+        run_whkd: false
+        run_masir: false
+        show_version: true
+        komorebi_menu:
+          blur: true
+          round_corners: true
+          round_corners_type: 'normal'
+          border_color: 'System'
+          alignment: 'left'
+          direction: 'down'
+          offset_top: 6
+          offset_left: 0
   clock:
     type: yasb.clock.ClockWidget
     options:
@@ -89,7 +116,7 @@ widgets:
   volume:
     type: yasb.volume.VolumeWidget
     options:
-      label: <span>{icon}</span>
+      label: <span>{icon}</span>{level}
       label_alt: <span>{icon}</span>{level}
       tooltip: true
       icons:
@@ -118,7 +145,7 @@ widgets:
   power_menu:
     type: yasb.power_menu.PowerMenuWidget
     options:
-      label: "<span>\uE712</span>"
+      label: "<span>\uE7E8</span>"
       uptime: true
       show_user: true
       menu_style: popup
@@ -152,6 +179,9 @@ widgets:
         cancel:
         - ''
         - Cancel
+  komorebi_control:
+    type: komorebi.control.KomorebiControlWidget
+    options: {}
   taskbar:
     type: yasb.taskbar.TaskbarWidget
     options:
@@ -160,6 +190,40 @@ widgets:
   wifi:
     type: yasb.wifi.WifiWidget
     options: {}
+  wallpapers:
+    type: "yasb.wallpapers.WallpapersWidget"
+    options:
+      label: "<span>\udb83\udc8d</span>"
+    # Example path to folder with images. Can be a single string or a list of strings.
+    # image_path: "C:\\Users\\{Username}\\Images" 
+      image_path: 
+        # - "D:\\OneDrive\\Pictures\\Wallpapers\\Themes\\Kanagawa"
+        - "C:\\Users\\daani\\Documents\\BackgroundPic"
+      change_automatically: false # Automatically change wallpaper
+      update_interval: 60 # If change_automatically is true, update interval in seconds
+      engine:
+        enabled: true
+        animation: "circle" # circle/slide_top/diamond/split
+      gallery:
+        enabled: true
+        blur: false
+        image_width: 220
+        image_per_page: 5
+        gallery_columns: 0 # 0 = auto, matches image_per_page for a single row
+        horizontal_position: "center" # left/center/right placement on screen
+        vertical_position: "center" # top/center/bottom placement
+        position_offset: 0 # minimum gap (px) from screen edges - see below for advanced options
+        respect_work_area: true # clamp to OS work area (avoids Windows taskbar)
+        show_buttons: false
+        orientation: "portrait"
+        image_spacing: 8
+        lazy_load: true
+        lazy_load_fadein: 400
+        image_corner_radius: 8
+      callbacks:
+        on_left: "toggle_gallery"
+        on_middle: "do_nothing"
+        on_right: "change_wallpaper"
   battery:
     type: yasb.battery.BatteryWidget
     options: {}

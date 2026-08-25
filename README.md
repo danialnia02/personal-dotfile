@@ -1,6 +1,6 @@
 # personal-dotfile
 
-Config files for WezTerm, Yazi, Neovim, and YASB — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
+Config files for WezTerm, Yazi, Neovim, YASB, and Komorebi — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
 
 ## Structure
 
@@ -10,6 +10,7 @@ dotfiles/
   yazi/             # Yazi file manager config
   nvim/             # Neovim config
   yasb/             # YASB status bar config (config.yaml, styles.css)
+  komorebi/         # Komorebi tiling window manager config (komorebi.json, whkdrc)
   windhawk/         # Windhawk mod settings, synced via registry export/import (see below)
   setup.ps1         # Setup script for new machines
 ```
@@ -29,6 +30,7 @@ winget install wez.wezterm
 winget install sxyazi.yazi
 winget install Neovim.Neovim
 winget install AmN.yasb
+winget install LGUG2Z.komorebi
 winget install RamenSoftware.Windhawk
 ```
 
@@ -69,6 +71,30 @@ cd "$env:USERPROFILE\dotfiles\windhawk"
 ```
 
 Then toggle the mod off/on in Windhawk to apply. See `windhawk/sync.ps1` for the export side (used when you change settings and want to save them back to this repo).
+
+### 7. Komorebi config
+
+Despite what the docs imply, komorebi looks for `komorebi.json` directly in `%USERPROFILE%` (`C:\Users\<you>\komorebi.json`) — not under `.config`. `setup.ps1` symlinks it there from `komorebi/komorebi.json`.
+
+Editing the file does **not** auto-apply while komorebi is running — it's a static config, not hot-reloaded. After editing, run:
+
+```powershell
+komorebic replace-configuration "$env:USERPROFILE\komorebi.json"
+```
+
+### 8. whkd (keybindings)
+
+whkd reads `komorebi/whkdrc`, symlinked to `%USERPROFILE%\.config\whkdrc` by `setup.ps1`. It's a separate process from komorebi — install it with:
+
+```powershell
+winget install LGUG2Z.whkd
+```
+
+Start it manually with `Start-Process whkd -WindowStyle Hidden`, or reload its bindings after an edit with `alt + o` (bound in `whkdrc` itself). To autostart both komorebi and whkd on login (one-time, applies from the next login onward — no reboot needed for the current session):
+
+```powershell
+komorebic enable-autostart --whkd
+```
 
 ## Making changes
 

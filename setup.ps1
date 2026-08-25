@@ -36,4 +36,8 @@ New-Item -ItemType Directory -Path "$env:USERPROFILE\.config\yasb" -Force | Out-
 Link-File "$env:USERPROFILE\.config\yasb\config.yaml" "$dotfiles\yasb\config.yaml"
 Link-File "$env:USERPROFILE\.config\yasb\styles.css" "$dotfiles\yasb\styles.css"
 
+Write-Host "`nKomorebi"
+Link-File "$env:USERPROFILE\komorebi.json" "$dotfiles\komorebi\komorebi.json"
+Link-File "$env:USERPROFILE\.config\whkdrc" "$dotfiles\komorebi\whkdrc"
+
 Write-Host "`nDone. All configs linked from $dotfiles"
