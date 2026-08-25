@@ -1,6 +1,6 @@
 # personal-dotfile
 
-Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Tacky Borders, and Spicetify — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
+Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, and Spicetify — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
 
 ## Structure
 
@@ -11,7 +11,6 @@ dotfiles/
   nvim/             # Neovim config
   yasb/             # YASB status bar config (config.yaml, styles.css)
   komorebi/         # Komorebi tiling window manager config (komorebi.json, whkdrc)
-  tacky-borders/    # Tacky Borders config (config.yaml)
   spicetify/        # Spicetify config (config-xpui.ini, Themes/tui, Extensions)
   windhawk/         # Windhawk mod settings, synced via registry export/import (see below)
   setup.ps1         # Setup script for new machines
@@ -98,17 +97,7 @@ Start it manually with `Start-Process whkd -WindowStyle Hidden`, or reload its b
 komorebic enable-autostart --whkd
 ```
 
-### 9. Tacky Borders
-
-Not on winget — download the release binary and run it once so it creates `%USERPROFILE%\.config\tacky-borders\config.yaml`. `setup.ps1` then symlinks that to `tacky-borders/config.yaml` in this repo.
-
-After editing the config, apply it without restarting with:
-
-```powershell
-tacky-borders reload
-```
-
-### 10. Spicetify
+### 9. Spicetify
 
 Install spicetify (and add it to PATH) per its own install docs, then run `spicetify` once so it creates `%APPDATA%\spicetify\config-xpui.ini`. `setup.ps1` then symlinks that to `spicetify/config-xpui.ini` in this repo.
 
