@@ -147,7 +147,7 @@
     padding: 0px 6px;
     margin: 4px 0;
     border-radius: 4px;
-    transition: background-color 0.1s 
+    transition: background-color 0.1s
 }
 
 .widget .icon {
@@ -522,10 +522,20 @@
 .audio-menu .apps-container .app-volume .app-icon-container:hover {
     background-color: var(--yasb-white-alpha-10);
 }
-/* Active Windows Title */
-.active-window-widget .icon {
-    padding-right: 4px;
-    padding-bottom: 0;
+/* Taskbar */
+.taskbar-widget {
+    padding: 0px 8px;
+}
+.taskbar-widget .app-container {
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin: 0px 3px;
+}
+.taskbar-widget .app-container:hover {
+    background-color: var(--yasb-white-alpha-08);
+}
+.taskbar-widget .app-container.foreground {
+    background-color: var(--yasb-accent);
 }
 /* System Tray */
 .systray {

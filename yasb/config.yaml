@@ -28,14 +28,14 @@ bars:
       width: 100%
       height: 34
     padding:
-      top: 10
-      left: 10
-      bottom: 10
-      right: 10
+      top: 2
+      left: 4
+      bottom: 2
+      right: 4
     widgets:
       left:
       - home
-      - active_window
+      - taskbar
       center:
       - clock
       right:
@@ -152,17 +152,11 @@ widgets:
         cancel:
         - ''
         - Cancel
-  active_window:
-    type: yasb.active_window.ActiveWindowWidget
+  taskbar:
+    type: yasb.taskbar.TaskbarWidget
     options:
-      label: ''
-      label_alt: '[class_name=''{win[class_name]}'' exe=''{win[process][name]}'' hwnd={win[hwnd]}]'
-      label_no_window: ''
-      label_icon: true
-      label_icon_size: 16
-      max_length: 32
-      max_length_ellipsis: '...'
-      monitor_exclusive: false
+      icon_size: 16
+      tooltip: true
   wifi:
     type: yasb.wifi.WifiWidget
     options: {}
@@ -171,7 +165,8 @@ widgets:
     options: {}
   pomodoro:
     type: yasb.pomodoro.PomodoroWidget
-    options: {}
+    options: 
+      work_duration: 30
   media:
     type: yasb.media.MediaWidget
     options:
@@ -186,7 +181,7 @@ widgets:
       max_field_size:
         label: 20
         label_alt: 20
-      show_thumbnail: false
+      show_thumbnail: true
       controls_only: false
       controls_left: true
       controls_hide: true
