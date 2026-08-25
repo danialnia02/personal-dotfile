@@ -15,12 +15,11 @@ config = {
   -- font = wezterm.font("CaskaydiaMono Nerd Font"), -- font size 12
   -- font = wezterm.font("MonaspiceNe NF"), -- font size 11
   -- font = wezterm.font("MonaspiceNe NF Medium"), -- font size 11
-  font = wezterm.font("MonaspiceNe NFP"), -- font size 11
+  -- font = wezterm.font("MonaspiceNe NFP"), -- font size 11
   -- font = wezterm.font("MonaspiceNe NFM"), -- font size 11
   -- font = wezterm.font("FiraCode Nerd Font"), -- font size 11
-  -- font = wezterm.font("FiraCode Nerd Font Propo"), -- font size 11
   -- font = wezterm.font("FiraCode Nerd Font Mono"), -- font size 11
-  -- font = wezterm.font("Cascadia Mono"),
+  font = wezterm.font("IosevkaTerm NF"), -- font size 11
   font_size = 11,
   -- font_size = 14,
   colors = {
@@ -136,11 +135,12 @@ config.keys = {
       local overrides = window:get_config_overrides() or {}
       if overrides.window_decorations == "INTEGRATED_BUTTONS | RESIZE" then
         overrides.window_decorations = "TITLE | RESIZE"
-        overrides.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+        -- overrides.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+        overrides.window_padding = { left = 0, right = 0, top = 40, bottom = 0 }
       else
         overrides.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
-        overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
-        -- overrides.window_padding = { left = 0, right = 0, top = 20, bottom = 0 }
+        -- overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
+        overrides.window_padding = { left = 0, right = 0, top = 40, bottom = 0 }
       end
       window:set_config_overrides(overrides)
     end),

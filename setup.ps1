@@ -1,17 +1,18 @@
-# Dotfiles setup — no admin required.
-# Hard links for files, junction points for directories.
+# Dotfiles setup — no admin required (Developer Mode must be on for symlinks).
+# Symlinks for files, junction points for directories.
 #
 # Requirements to install first:
 #   winget install wez.wezterm
 #   winget install sxyazi.yazi
 #   winget install Neovim.Neovim
 #   Font: Cascadia Mono (or Cascadia Code NF)
+#   Settings > Privacy & Security > For developers > Developer Mode: On
 
 $dotfiles = $PSScriptRoot
 
 function Link-File($target, $source) {
     if (Test-Path $target) { Remove-Item $target -Force }
-    New-Item -ItemType HardLink -Path $target -Target $source | Out-Null
+    New-Item -ItemType SymbolicLink -Path $target -Target $source | Out-Null
     Write-Host "  linked: $target"
 }
 
@@ -29,5 +30,10 @@ Link-Dir "$env:APPDATA\yazi\config" "$dotfiles\yazi"
 
 Write-Host "`nNeovim"
 Link-Dir "$env:LOCALAPPDATA\nvim" "$dotfiles\nvim"
+
+Write-Host "`nYASB"
+New-Item -ItemType Directory -Path "$env:USERPROFILE\.config\yasb" -Force | Out-Null
+Link-File "$env:USERPROFILE\.config\yasb\config.yaml" "$dotfiles\yasb\config.yaml"
+Link-File "$env:USERPROFILE\.config\yasb\styles.css" "$dotfiles\yasb\styles.css"
 
 Write-Host "`nDone. All configs linked from $dotfiles"
