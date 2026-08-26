@@ -710,20 +710,16 @@
 
 /*Style for buttons.*/
 .komorebi-workspaces .ws-btn {
-  padding: 4px 16px;
+  padding: 4px 10px;
   border: none;
 }
 
 /*Style for buttons which contain window and are not empty.*/
 .komorebi-workspaces .ws-btn.populated {
-  padding: 4px 10px;
 }
 
 /*Style for the active workspace button.*/
 .komorebi-workspaces .ws-btn.active {
-  padding: 4px 16px;
-  padding-left: 10;
-  padding-right: 10;
   background-color: var(--accent);
   border-radius: var(--border-radius2);
   color: var(--accentText);

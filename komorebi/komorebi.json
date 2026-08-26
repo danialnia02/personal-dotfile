@@ -38,7 +38,14 @@
         },
         {
           "name": "II",
-          "layout": "BSP"
+          "layout": "BSP",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Spotify.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
         },
         {
           "name": "III",

@@ -23,7 +23,7 @@ config = {
   font_size = 11,
   -- font_size = 14,
   colors = {
-    background = "black",
+    background = "#1F1F28",
     compose_cursor = "orange",
 
     -- tab bar styles
@@ -31,7 +31,7 @@ config = {
       background = "rgba(0,0,0,0)",
     },
   },
-  window_background_opacity = 0.80,
+  window_background_opacity = 0.88,
   window_decorations = "RESIZE", -- no title bar on startup, still resizable
   -- window_background_opacity = 0.05,
   -- win32_system_backdrop = "Acrylic",
@@ -144,17 +144,17 @@ config.keys = {
       window:set_config_overrides(overrides)
     end),
     mods = "LEADER",
-    key = "Tab",
+    key = "Backspace",
   },
 
   {
     action = wezterm.action_callback(function(window, _)
       local overrides = window:get_config_overrides() or {}
-      if overrides.window_background_opacity == 0.80 then
+      if overrides.window_background_opacity == 0.88 then
         -- if overrides.window_background_opacity == 0.70 then
         overrides.window_background_opacity = 1
       else
-        overrides.window_background_opacity = 0.80
+        overrides.window_background_opacity = 0.88
         -- overrides.window_background_opacity = 0.70
       end
       window:set_config_overrides(overrides)

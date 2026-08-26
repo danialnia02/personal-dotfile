@@ -40,6 +40,7 @@ bars:
       left:
       - home
       - komorebi_active_layout
+      - komorebi_workspaces
       - taskbar
       center:
       - clock
@@ -123,6 +124,10 @@ widgets:
         offset_top: 6
         offset_left: 0
         show_layout_icons: true
+  komorebi_workspaces:
+    type: "komorebi.workspaces.WorkspaceWidget"
+    options:
+      hide_if_offline: true
   clock:
     type: yasb.clock.ClockWidget
     options:
