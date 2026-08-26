@@ -56,18 +56,28 @@ widgets:
   home:
     type: yasb.home.HomeWidget
     options:
+      # label: "<span>\uE8A9</span>"
       label: "<span>\uE8A9</span>"
       menu_list:
-      - title: User Home
-        path: '~'
-      - title: Download
-        path: ~\Downloads
-      - title: Documents
-        path: ~\Documents
-      - title: Pictures
-        path: ~\Pictures
-      system_menu: true
-      power_menu: true
+      # - {title: User Home, path: '~'}
+      # - {title: Download, path: ~\Downloads}
+      # - {title: Documents, path: ~\Documents}
+      # - {title: Pictures, path: ~\Pictures}
+      - separator: true
+      - title: Start Komorebi
+        command: komorebic
+        args: ["start", "--whkd"]
+        show_window: false
+      - title: Stop Komorebi
+        command: komorebic
+        args: ["stop", "--whkd"]
+        show_window: false
+      - title: Reload Komorebi
+        command: cmd.exe
+        args: ["/c", "komorebic stop --whkd && komorebic start --whkd"]
+        show_window: false
+      system_menu: false
+      power_menu: false
       blur: true
       round_corners: true
       round_corners_type: normal
