@@ -5,8 +5,13 @@
 #   winget install wez.wezterm
 #   winget install sxyazi.yazi
 #   winget install Neovim.Neovim
+#   winget install Fastfetch-cli.Fastfetch
+#   winget install JanDeDobbeleer.OhMyPosh
 #   Font: Cascadia Mono (or Cascadia Code NF)
 #   Settings > Privacy & Security > For developers > Developer Mode: On
+#
+# Fastfetch and Oh My Posh are not symlinked here - they're referenced directly
+# by path from the PowerShell profile ($PROFILE). See README.md section 11.
 
 $dotfiles = $PSScriptRoot
 

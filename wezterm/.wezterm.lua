@@ -32,6 +32,7 @@ config = {
     },
   },
   window_background_opacity = 0.80,
+  window_decorations = "RESIZE", -- no title bar on startup, still resizable
   -- window_background_opacity = 0.05,
   -- win32_system_backdrop = "Acrylic",
   --
@@ -51,7 +52,7 @@ config = {
   window_padding = {
     left = 0,
     right = 0,
-    top = 0,
+    top = 10,
     bottom = 0,
   }
   -- enable_csi_u_key_encoding = true,
@@ -135,11 +136,9 @@ config.keys = {
       local overrides = window:get_config_overrides() or {}
       if overrides.window_decorations == "INTEGRATED_BUTTONS | RESIZE" then
         overrides.window_decorations = "TITLE | RESIZE"
-        -- overrides.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
         overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
       else
         overrides.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
-        -- overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
         overrides.window_padding = { left = 0, right = 0, top = 50, bottom = 0 }
       end
       window:set_config_overrides(overrides)

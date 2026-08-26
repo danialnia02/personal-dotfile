@@ -3,8 +3,8 @@
 /* Root Variables */
 :root {
 
-  --icons-font: "JetBrainsMono NFP", "JetBrainsMono Nerd Font Propo";
-  --icons-font-fallback: "JetBrainsMono NFP", "JetBrainsMono Nerd Font Propo";
+  --icons-font: "JetBrainsMono Nerd Font Propo", "JetBrainsMono NFP";
+  --icons-font-fallback: "JetBrainsMono Nerd Font Propo", "JetBrainsMono NFP";
   --system-font: "Segoe UI Variable", "Segoe UI";
   --specialFont: "Segoe UI Variable", "Segoe UI";
   --border-radius: 6;
@@ -219,7 +219,7 @@
 
 /* Home Menu */
 .home-widget .icon {
-  font-family: var(--system-font);
+  font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets";
   font-size: var(--fontSize);
   font-weight: bold;
   color: var(--text);
@@ -229,7 +229,6 @@
   background-color: var(--background);
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
-  margin-left: 14px;
 }
 
 .home-menu .menu-item {
@@ -611,6 +610,7 @@
   color: var(--text);
   font-family: var(--icons-font);
   padding-right: 5px;
+  padding-top: 6px;
 }
 
 .audio-menu {
@@ -731,12 +731,18 @@
 
 
 /* Komorebi-active-layout */
-.komorebi-active-layout {}
+.komorebi-active-layout {
+}
 
-.komorebi-active-layout .widget-container {}
+.komorebi-active-layout .widget-container {
+  /*padding-right: 10px;*/
+}
 
 .komorebi-active-layout .label {
   font-family: var(--specialFont);
+}
+
+.komorebi-active-layout .icon {
 }
 
 /* Komorebi-layout-menu */

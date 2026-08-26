@@ -1,6 +1,6 @@
 # personal-dotfile
 
-Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Flow Launcher, and Spicetify — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
+Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Flow Launcher, Spicetify, Fastfetch, and Oh My Posh — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
 
 ## Structure
 
@@ -14,6 +14,8 @@ dotfiles/
   flowlauncher/     # Flow Launcher config (Settings.json, Themes/gold.xaml)
   spicetify/        # Spicetify config (config-xpui.ini, Themes/tui, Extensions)
   windhawk/         # Windhawk mod settings, synced via registry export/import (see below)
+  fastfetch/        # Fastfetch config (config.jsonc, ASCII logo .txt files) - not symlinked, see below
+  ohmyposh/         # Oh My Posh theme (sonicboom_light.omp.json) - not symlinked, see below
   setup.ps1         # Setup script for new machines
 ```
 
@@ -35,6 +37,8 @@ winget install AmN.yasb
 winget install LGUG2Z.komorebi
 winget install Flow-Launcher.Flow-Launcher
 winget install RamenSoftware.Windhawk
+winget install Fastfetch-cli.Fastfetch
+winget install JanDeDobbeleer.OhMyPosh
 ```
 
 Also install the **Cascadia Mono** font (or Cascadia Code NF) — required for WezTerm and Yazi icons to display correctly.
@@ -114,6 +118,17 @@ After editing the config (or picking a new theme), apply it with:
 ```powershell
 spicetify apply
 ```
+
+### 11. Fastfetch and Oh My Posh
+
+Unlike the other apps, these aren't symlinked by `setup.ps1` — they're referenced directly from the PowerShell profile by their path in this repo:
+
+```powershell
+oh-my-posh init pwsh --config "C:\Users\<you>\dotfiles\ohmyposh\sonicboom_light.omp.json" | Invoke-Expression
+$env:FASTFETCH_EAGLE_ROOT = 'C:\Users\<you>\dotfiles\fastfetch'
+```
+
+Add both lines to your `$PROFILE` (`Documents\PowerShell\Microsoft.PowerShell_profile.ps1`) — that file itself lives outside this repo and isn't tracked here, so it has to be set up by hand on a new machine. `fastfetch/config.jsonc` references the logo `.txt` files and `$env:FASTFETCH_EAGLE_ROOT` via relative/env paths, so no further linking is needed once the env var is set.
 
 ## Making changes
 
