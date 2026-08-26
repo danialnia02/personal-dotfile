@@ -39,7 +39,7 @@ bars:
     widgets:
       left:
       - home
-      - komorebi_control
+      # - komorebi_active_layout
       - taskbar
       center:
       - clock
@@ -74,31 +74,45 @@ widgets:
       border_color: System
       alignment: left
       offset_left: -12
-  komorebi_control:
-      type: "komorebi.control.KomorebiControlWidget"
-      options:
-        label: "<span>\udb80\uddd9</span>"
-        icons:
-          start: "\uead3"
-          stop: "\uead7"
-          reload: "\uead2"
-        run_ahk: false
-        run_whkd: false
-        run_masir: false
-        show_version: true
-        komorebi_menu:
-          blur: true
-          round_corners: true
-          round_corners_type: 'normal'
-          border_color: 'System'
-          alignment: 'left'
-          direction: 'down'
-          offset_top: 6
-          offset_left: 0
+  # komorebi_active_layout:
+  #   type: "komorebi.active_layout.ActiveLayoutWidget"
+  #   options:
+  #     hide_if_offline: true
+  #     label: "{layout_name}"
+  #     layouts: ['bsp', 'columns', 'rows', 'grid', 'vertical_stack', 'horizontal_stack', 'ultrawide_vertical_stack','right_main_vertical_stack']
+  #     layout_icons:
+  #       bsp: "\uebeb"
+  #       columns: "\uebf7"
+  #       rows: "\uec01"
+  #       grid: "\udb81\udf58"
+  #       scrolling: "\uebf7"
+  #       vertical_stack: "\uebee"
+  #       horizontal_stack: "\uebf0"
+  #       ultrawide_vertical_stack: "\uebee"
+  #       right_main_vertical_stack: "\uebf1"
+  #       monocle: "\uf06f"
+  #       maximized: "\uf06f"
+  #       floating: "\uf2d2"
+  #       paused: "\udb83\udf89"
+  #       tiling: "\udb81\ude40"
+  #     callbacks:
+  #       on_left: 'toggle_layout_menu'
+  #       on_middle: 'next_layout'
+  #       on_right: 'prev_layout'
+  #     layout_menu:
+  #       blur: false
+  #       round_corners: true
+  #       round_corners_type: "normal"
+  #       border_color: "System"
+  #       alignment: "left"
+  #       direction: "down"
+  #       offset_top: 6
+  #       offset_left: 0
+  #       show_layout_icons: true
   clock:
     type: yasb.clock.ClockWidget
     options:
-      label: '{%a %b %#I:%M%p}<span>{alarm}</span>'
+      label: '{%a %#d %b %#I:%M%p}<span>{alarm}</span>'
       label_alt: '{%a, %d %b %H:%M}'
       timezones: []
       calendar:

@@ -40,6 +40,12 @@ Write-Host "`nKomorebi"
 Link-File "$env:USERPROFILE\komorebi.json" "$dotfiles\komorebi\komorebi.json"
 Link-File "$env:USERPROFILE\.config\whkdrc" "$dotfiles\komorebi\whkdrc"
 
+Write-Host "`nFlow Launcher"
+New-Item -ItemType Directory -Path "$env:APPDATA\FlowLauncher\Settings" -Force | Out-Null
+Link-File "$env:APPDATA\FlowLauncher\Settings\Settings.json" "$dotfiles\flowlauncher\Settings.json"
+New-Item -ItemType Directory -Path "$env:APPDATA\FlowLauncher\Themes" -Force | Out-Null
+Link-File "$env:APPDATA\FlowLauncher\Themes\gold.xaml" "$dotfiles\flowlauncher\Themes\gold.xaml"
+
 Write-Host "`nSpicetify"
 New-Item -ItemType Directory -Path "$env:APPDATA\spicetify" -Force | Out-Null
 Link-File "$env:APPDATA\spicetify\config-xpui.ini" "$dotfiles\spicetify\config-xpui.ini"

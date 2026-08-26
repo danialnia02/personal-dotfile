@@ -6,8 +6,8 @@
 
  "transparency": false,
   "transparency_alpha": 250,
-  "default_workspace_padding": 0,
-  "default_container_padding": 0,
+  "default_workspace_padding": 3,
+  "default_container_padding": 3,
   "border": true,
   "border_style":"Rounded",
   "border_width": 4,
@@ -23,8 +23,8 @@
       }
 },
   "border_colours": {
-    "single": "#FFD600",
-    "unfocused": "#d19c36",
+    "single": "#FFFFFF",
+    "unfocused": "#D19C36",
     "floating": "#FFD600",
     "monocle": "#D19C36"
   },
