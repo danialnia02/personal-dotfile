@@ -1,6 +1,6 @@
 # personal-dotfile
 
-Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Flow Launcher, Spicetify, Fastfetch, and Oh My Posh — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files), a PowerShell console color script (registry-based), and a Nilesoft Shell config backup (plain copy, not linked).
+Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Flow Launcher, Spicetify, Fastfetch, and Oh My Posh — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files) and a Nilesoft Shell config backup (plain copy, not linked).
 
 ## Structure
 
@@ -16,7 +16,6 @@ dotfiles/
   windhawk/         # Windhawk mod settings, synced via registry export/import (see below)
   fastfetch/        # Fastfetch config (config.jsonc, ASCII logo .txt files) - not symlinked, see below
   ohmyposh/         # Oh My Posh theme (sonicboom_light.omp.json) - not symlinked, see below
-  powershell/       # console-colors.ps1 - sets conhost default text color (registry-based, see below)
   nilesoft-shell/   # Nilesoft Shell context menu config - plain copy, not linked, see below
   setup.ps1         # Setup script for new machines
 ```
@@ -132,15 +131,26 @@ $env:FASTFETCH_EAGLE_ROOT = 'C:\Users\<you>\dotfiles\fastfetch'
 
 Add both lines to your `$PROFILE` (`Documents\PowerShell\Microsoft.PowerShell_profile.ps1`) — that file itself lives outside this repo and isn't tracked here, so it has to be set up by hand on a new machine. `fastfetch/config.jsonc` references the logo `.txt` files and `$env:FASTFETCH_EAGLE_ROOT` via relative/env paths, so no further linking is needed once the env var is set.
 
-### 12. PowerShell console colors
+### 12. PowerShell typed-input color
 
-`powershell/console-colors.ps1` sets the default foreground text color for PowerShell console windows (both `pwsh.exe` and legacy `powershell.exe`) via the per-user console registry keys. Not symlinked — it's a script you run, not a config file an app reads directly.
+The line you're actively typing at the prompt is colored via PSReadLine, in `$PROFILE` (`Documents\PowerShell\Microsoft.PowerShell_profile.ps1`) — that file lives outside this repo (see section 11), so this snippet has to be added by hand on a new machine:
 
 ```powershell
-.\powershell\console-colors.ps1
+$typingColor = $PSStyle.Foreground.FromRgb(0xDC, 0xD7, 0xBA)
+Set-PSReadLineOption -Colors @{
+    Default   = $typingColor
+    Command   = $typingColor
+    Parameter = $typingColor
+    Operator  = $typingColor
+    Variable  = $typingColor
+    String    = $typingColor
+    Number    = $typingColor
+    Type      = $typingColor
+    Member    = $typingColor
+}
 ```
 
-To change the color later, edit the `$ForegroundHex` value at the top of the script and re-run it. No admin needed (writes to `HKCU`). Reopen any already-open console windows to see the change.
+Command *output* is left at the console's normal default (white) — only the input line is recolored. To change the color, edit the RGB values in `$typingColor` and open a new terminal.
 
 ### 13. Nilesoft Shell (right-click menu)
 

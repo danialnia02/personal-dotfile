@@ -24,7 +24,8 @@ config = {
   -- font_size = 14,
   colors = {
     background = "#1F1F28",
-    foreground = "#DCD7BA",
+    -- foreground left as WezTerm's default (white) for command output;
+    -- the typed input line is colored yellow separately via PSReadLine (see PS profile)
     compose_cursor = "orange",
 
     -- tab bar styles
@@ -77,7 +78,7 @@ end
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local edge_background = "#080808"
   local background = "#080808"
-  local foreground = "#aaaaaa"
+  local foreground = "#DCD7BA"
 
   if tab.is_active then
     background = "#1c1c1c"
