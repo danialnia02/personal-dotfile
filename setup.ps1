@@ -56,6 +56,7 @@ New-Item -ItemType Directory -Path "$env:APPDATA\spicetify" -Force | Out-Null
 Link-File "$env:APPDATA\spicetify\config-xpui.ini" "$dotfiles\spicetify\config-xpui.ini"
 New-Item -ItemType Directory -Path "$env:APPDATA\spicetify\Themes" -Force | Out-Null
 Link-Dir "$env:APPDATA\spicetify\Themes\tui" "$dotfiles\spicetify\Themes\tui"
+Link-Dir "$env:APPDATA\spicetify\Themes\Kanagawa" "$dotfiles\spicetify\Themes\Kanagawa"
 Link-Dir "$env:APPDATA\spicetify\Extensions" "$dotfiles\spicetify\Extensions"
 
 Write-Host "`nDone. All configs linked from $dotfiles"

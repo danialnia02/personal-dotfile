@@ -27,6 +27,8 @@ config = {
     -- foreground left as WezTerm's default (white) for command output;
     -- the typed input line is colored yellow separately via PSReadLine (see PS profile)
     compose_cursor = "orange",
+    cursor_bg = "#DCD7BA",
+    cursor_border = "#DCD7BA",
 
     -- tab bar styles
     tab_bar = {
