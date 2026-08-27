@@ -1,0 +1,5 @@
+# Flow Launcher bumps ActivateTimes on every launch, which shows up as a diff on
+# every commit. The "flowsettings" clean filter pins it to 0 in git while leaving
+# the real file alone. The filter is defined by setup.ps1 (git config is local to
+# each clone, so it cannot live in this file).
+flowlauncher/Settings.json filter=flowsettings

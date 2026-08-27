@@ -59,4 +59,22 @@ Link-Dir "$env:APPDATA\spicetify\Themes\tui" "$dotfiles\spicetify\Themes\tui"
 Link-Dir "$env:APPDATA\spicetify\Themes\Kanagawa" "$dotfiles\spicetify\Themes\Kanagawa"
 Link-Dir "$env:APPDATA\spicetify\Extensions" "$dotfiles\spicetify\Extensions"
 
+Write-Host "`nSpicetify auto-repair task"
+# Spotify updates wipe the injected theme; this re-applies it at logon.
+$taskName = "SpicetifyApply"
+$taskScript = "$dotfiles\spicetify\apply-on-startup.ps1"
+$action = New-ScheduledTaskAction -Execute "powershell.exe" `
+    -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$taskScript`""
+$trigger = New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME
+$settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
+Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings `
+    -Description "Re-apply spicetify theme if a Spotify update wiped it" -Force | Out-Null
+Write-Host "  registered: $taskName (at logon)"
+
+Write-Host "`nGit filters"
+# Flow Launcher bumps ActivateTimes on every launch; keep that churn out of git.
+# See .gitattributes - git config is per-clone, so it has to be set here.
+git -C $dotfiles config filter.flowsettings.clean 'sed -E "s/\"ActivateTimes\": [0-9]+/\"ActivateTimes\": 0/"'
+Write-Host "  configured: flowsettings clean filter"
+
 Write-Host "`nDone. All configs linked from $dotfiles"
