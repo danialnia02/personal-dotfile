@@ -24,6 +24,7 @@ config = {
   -- font_size = 14,
   colors = {
     background = "#1F1F28",
+    foreground = "#DCD7BA",
     compose_cursor = "orange",
 
     -- tab bar styles

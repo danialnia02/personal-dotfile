@@ -1,6 +1,6 @@
 # personal-dotfile
 
-Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Flow Launcher, Spicetify, Fastfetch, and Oh My Posh — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files).
+Config files for WezTerm, Yazi, Neovim, YASB, Komorebi, Flow Launcher, Spicetify, Fastfetch, and Oh My Posh — managed from one place via symlinks and junction points. Also tracks Windhawk mod settings (registry-based, synced separately since Windhawk doesn't store config as files), a PowerShell console color script (registry-based), and a Nilesoft Shell config backup (plain copy, not linked).
 
 ## Structure
 
@@ -16,6 +16,8 @@ dotfiles/
   windhawk/         # Windhawk mod settings, synced via registry export/import (see below)
   fastfetch/        # Fastfetch config (config.jsonc, ASCII logo .txt files) - not symlinked, see below
   ohmyposh/         # Oh My Posh theme (sonicboom_light.omp.json) - not symlinked, see below
+  powershell/       # console-colors.ps1 - sets conhost default text color (registry-based, see below)
+  nilesoft-shell/   # Nilesoft Shell context menu config - plain copy, not linked, see below
   setup.ps1         # Setup script for new machines
 ```
 
@@ -129,6 +131,34 @@ $env:FASTFETCH_EAGLE_ROOT = 'C:\Users\<you>\dotfiles\fastfetch'
 ```
 
 Add both lines to your `$PROFILE` (`Documents\PowerShell\Microsoft.PowerShell_profile.ps1`) — that file itself lives outside this repo and isn't tracked here, so it has to be set up by hand on a new machine. `fastfetch/config.jsonc` references the logo `.txt` files and `$env:FASTFETCH_EAGLE_ROOT` via relative/env paths, so no further linking is needed once the env var is set.
+
+### 12. PowerShell console colors
+
+`powershell/console-colors.ps1` sets the default foreground text color for PowerShell console windows (both `pwsh.exe` and legacy `powershell.exe`) via the per-user console registry keys. Not symlinked — it's a script you run, not a config file an app reads directly.
+
+```powershell
+.\powershell\console-colors.ps1
+```
+
+To change the color later, edit the `$ForegroundHex` value at the top of the script and re-run it. No admin needed (writes to `HKCU`). Reopen any already-open console windows to see the change.
+
+### 13. Nilesoft Shell (right-click menu)
+
+`nilesoft-shell/` is a plain copy of `shell.nss` and `imports/*.nss` from `C:\Program Files\Nilesoft Shell\` — **not symlinked**, since that's an admin-protected path and a normal (non-elevated) process can't create a symlink there. Treat this folder as a backup/reference, not a live config:
+
+- After editing the live files in `C:\Program Files\Nilesoft Shell\`, copy them back here to keep the backup current (needs an elevated terminal to read them, since Program Files is admin-protected for some operations):
+  ```powershell
+  Copy-Item "C:\Program Files\Nilesoft Shell\shell.nss" ".\nilesoft-shell\shell.nss"
+  Copy-Item "C:\Program Files\Nilesoft Shell\imports\*.nss" ".\nilesoft-shell\imports\"
+  ```
+- To restore onto a new machine, copy the other direction (elevated), then restart Explorer to pick up theme/border changes:
+  ```powershell
+  Copy-Item ".\nilesoft-shell\shell.nss" "C:\Program Files\Nilesoft Shell\shell.nss"
+  Copy-Item ".\nilesoft-shell\imports\*.nss" "C:\Program Files\Nilesoft Shell\imports\"
+  Stop-Process -Name explorer -Force
+  ```
+
+Theme colors follow Kanagawa (matches yasb): background `#1F1F28`, text `#DCD7BA`, border `#D19C36`.
 
 ## Making changes
 

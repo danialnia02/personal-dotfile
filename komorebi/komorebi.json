@@ -102,6 +102,11 @@
 "kind": "Exe",
 "id": "YASB.exe",
 "matching_strategy": "Equals",
+},
+{
+"kind": "Title",
+"id": "^(Restart|Shutdown|Log Off)( Computer)?$",
+"matching_strategy": "Regex",
 }
 ],
 }
