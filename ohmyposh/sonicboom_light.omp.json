@@ -24,7 +24,7 @@
             "style": "agnoster_short"
           },
           "template": " {{ .Path }} ",
-          "foreground": "#D19C36",
+          "foreground": "#DCD7BA",
           "background": "#4d4d4d",
           "type": "path",
           "style": "plain"
@@ -49,7 +49,7 @@
           },
           "trailing_diamond": "",
           "template": "<#000000> </>{{ .FormattedMs }}s ",
-          "foreground": "#D19C36",
+          "foreground": "#DCD7BA",
           "background": "#4d4d4d",
           "type": "executiontime",
           "style": "diamond"
@@ -66,7 +66,7 @@
             "cache_duration": "none"
           },
           "template": " ",
-          "foreground": "#D19C36",
+          "foreground": "#DCD7BA",
           "type": "status",
           "style": "plain",
           "foreground_templates": [
