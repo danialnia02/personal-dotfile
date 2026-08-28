@@ -77,6 +77,19 @@ widgets:
         args: ["/c", "komorebic stop --whkd && komorebic start --whkd"]
         show_window: false
       - separator: true
+      - title: Pomodoro 15 min
+        command: powershell.exe
+        args: ["-NoProfile", "-WindowStyle", "Hidden", "-ExecutionPolicy", "Bypass", "-File", "C:\\Users\\daani\\dotfiles\\yasb\\set-pomodoro-duration.ps1", "-Minutes", "15"]
+        show_window: false
+      - title: Pomodoro 30 min
+        command: powershell.exe
+        args: ["-NoProfile", "-WindowStyle", "Hidden", "-ExecutionPolicy", "Bypass", "-File", "C:\\Users\\daani\\dotfiles\\yasb\\set-pomodoro-duration.ps1", "-Minutes", "30"]
+        show_window: false
+      - title: Pomodoro 60 min
+        command: powershell.exe
+        args: ["-NoProfile", "-WindowStyle", "Hidden", "-ExecutionPolicy", "Bypass", "-File", "C:\\Users\\daani\\dotfiles\\yasb\\set-pomodoro-duration.ps1", "-Minutes", "60"]
+        show_window: false
+      - separator: true
       - title: Restart YASB
         command: yasbc
         args: ["reload"]
@@ -291,7 +304,7 @@ widgets:
   pomodoro:
     type: yasb.pomodoro.PomodoroWidget
     options:
-      work_duration: 30
+      work_duration: 15
       show_notification: true
       auto_start_breaks: false
       auto_start_work: false
