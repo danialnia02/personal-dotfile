@@ -41,6 +41,12 @@ map("n", "<leader>,", function()
   require("nvchad.tabufline").move_buf(-1)
 end, { desc = "Move buffer to left" })
 
+-- move NvChad's horizontal terminal off <A-h> so komorebi keeps it for "focus left"
+pcall(vim.keymap.del, { "n", "t" }, "<A-h>")
+map({ "n", "t" }, "<A-g>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "Terminal toggleable horizontal term" })
+
 -- jump between buffers using alt + number keys
 for i = 1, 9, 1 do
   vim.keymap.set("n", string.format("<A-%s>", i), function()
