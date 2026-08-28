@@ -290,8 +290,13 @@ widgets:
         direction: down
   pomodoro:
     type: yasb.pomodoro.PomodoroWidget
-    options: 
+    options:
       work_duration: 30
+      show_notification: true
+      auto_start_breaks: false
+      auto_start_work: false
+      callbacks:
+        on_left: toggle_timer
   media:
     type: yasb.media.MediaWidget
     options:
