@@ -90,6 +90,8 @@ Editing the file does **not** auto-apply while komorebi is running — it's a st
 komorebic replace-configuration "$env:USERPROFILE\komorebi.json"
 ```
 
+**Layered windows (Electron/Store apps like Claude):** komorebi silently skips any window with the `WS_EX_LAYERED` style unless its exe is whitelisted, so `layered_applications` in `komorebi.json` holds a rule for `claude.exe` (plus `tray_and_multi_window_applications`, since it minimises to the tray). Rule matching is **case-sensitive** — the Claude MSIX binary is lowercase `claude.exe`, so the rules use a case-insensitive regex (`(?i)^claude[.]exe$`) rather than `Equals`. To debug a window komorebi refuses to tile, compare its exe/class/styles against `komorebic global-state` and `komorebic visible-windows`.
+
 ### 8. whkd (keybindings)
 
 whkd reads `komorebi/whkdrc`, symlinked to `%USERPROFILE%\.config\whkdrc` by `setup.ps1`. It's a separate process from komorebi — install it with:

@@ -109,4 +109,18 @@
 "matching_strategy": "Regex",
 }
 ],
+"layered_applications": [
+{
+"kind": "Exe",
+"id": "(?i)^claude[.]exe$",
+"matching_strategy": "Regex",
+}
+],
+"tray_and_multi_window_applications": [
+{
+"kind": "Exe",
+"id": "(?i)^claude[.]exe$",
+"matching_strategy": "Regex",
+}
+],
 }
