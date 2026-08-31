@@ -273,6 +273,29 @@
   padding: 2 2px;
 }
 
+/* Todo-Widget */
+.todo-widget {
+  padding: 2 2px;
+}
+
+.todo-widget .widget-container {
+  background-color: var(--background2);
+  border: 1px solid var(--background2);
+  border-radius: var(--border-radius2);
+  margin: 1px 1px;
+  padding: 2 4px;
+}
+
+.todo-widget .label {
+  color: var(--text);
+  margin: 0 2px;
+}
+
+.todo-widget .label span {
+  font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets";
+  color: var(--accent);
+}
+
 .clock-widget .icon.alarm {
   color: var(--text);
   padding-left: 4px;

@@ -44,6 +44,7 @@ bars:
       - taskbar
       center:
       - clock
+      - todo
       right:
       - media
       - pomodoro
@@ -160,6 +161,21 @@ widgets:
         on_left: toggle_calendar
         on_middle: toggle_label
         on_right: context_menu
+  todo:
+    type: yasb.custom.CustomWidget
+    options:
+      label: "<span>\uE73A</span> {data[count]}"
+      label_alt: "<span>\uE73A</span> {data[count]}"
+      class_name: "todo-widget"
+      tooltip: true
+      tooltip_label: "{data[list]}"
+      exec_options:
+        run_cmd: "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\daani\\dotfiles\\yasb\\todo-summary.ps1"
+        run_once: false
+        run_interval: 60000
+        return_format: "json"
+      callbacks:
+        on_left: "exec powershell.exe -NoProfile -STA -WindowStyle Hidden -ExecutionPolicy Bypass -File C:\\Users\\daani\\dotfiles\\yasb\\today-panel.ps1"
   volume:
     type: yasb.volume.VolumeWidget
     options:

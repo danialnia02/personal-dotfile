@@ -172,6 +172,22 @@ Command *output* is left at the console's normal default (white) — only the in
 
 Theme colors follow Kanagawa (matches yasb): background `#1F1F28`, text `#DCD7BA`, border `#D19C36`.
 
+### 14. Syncthing (start at logon)
+
+Not a tracked config — just a startup step. The Windows installer (`%LOCALAPPDATA%\Programs\Syncthing`) ships a helper that registers a Task Scheduler logon task running `stctl.exe --start`, which launches Syncthing hidden (no console window). Prefer this over a `Run` key entry or a Startup-folder shortcut.
+
+```powershell
+wscript.exe "$env:LOCALAPPDATA\Programs\Syncthing\SyncthingLogonTask.js" /create /silent
+```
+
+Drop `/silent` for a confirmation dialog, or add `/startonacpoweronly` to skip starting on battery. To undo:
+
+```powershell
+wscript.exe "$env:LOCALAPPDATA\Programs\Syncthing\SyncthingLogonTask.js" /remove /silent
+```
+
+The task is named `Start Syncthing at logon (<user>@<host>)`; check it with `Get-ScheduledTask -TaskName '*Syncthing*'`.
+
 ## Making changes
 
 Edit any file inside `~/dotfiles/` directly — changes take effect immediately since all app config locations point here. Then commit and push as normal:
