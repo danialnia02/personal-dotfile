@@ -55,8 +55,8 @@
   "FirstLaunch": false,
   "SettingWindowWidth": 950,
   "SettingWindowHeight": 1150,
-  "SettingWindowTop": 24,
-  "SettingWindowLeft": 485,
+  "SettingWindowTop": 44,
+  "SettingWindowLeft": 6,
   "SettingWindowState": 0,
   "ShowPlaceholder": true,
   "PlaceholderText": "",
@@ -162,7 +162,7 @@
   "DontPromptUpdateMsg": false,
   "EnableUpdateLog": false,
   "StartFlowLauncherOnSystemStartup": true,
-  "UseLogonTaskForStartup": false,
+  "UseLogonTaskForStartup": true,
   "HideOnStartup": true,
   "HideNotifyIcon": false,
   "LeaveCmdOpen": false,
@@ -198,7 +198,7 @@
         ],
         "Priority": 0,
         "SearchDelayTime": null,
-        "Disabled": false,
+        "Disabled": true,
         "HomeDisabled": false
       },
       "CEA0FDFC6D3B4085823D60DC76F28855": {
@@ -250,7 +250,7 @@
         ],
         "Priority": 0,
         "SearchDelayTime": null,
-        "Disabled": false,
+        "Disabled": true,
         "HomeDisabled": false
       },
       "b64d0a79-329a-48b0-b53f-d658318a1bf6": {
@@ -262,7 +262,7 @@
         ],
         "Priority": 0,
         "SearchDelayTime": null,
-        "Disabled": false,
+        "Disabled": true,
         "HomeDisabled": false
       },
       "791FC278BA414111B8D1886DFE447410": {
@@ -286,7 +286,7 @@
         ],
         "Priority": 0,
         "SearchDelayTime": null,
-        "Disabled": false,
+        "Disabled": true,
         "HomeDisabled": false
       },
       "CEA08895D2544B019B2E9C5009600DF4": {

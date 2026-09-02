@@ -38,7 +38,7 @@
         },
         {
           "name": "II",
-          "layout": "BSP",
+          "layout": "Columns",
           "initial_workspace_rules": [
             {
               "kind": "Exe",
