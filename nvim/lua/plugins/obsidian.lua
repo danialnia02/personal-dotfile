@@ -33,6 +33,7 @@ return {
     vim.opt.conceallevel = 1
 
     require("obsidian").setup {
+      ui = { enable = false },
       workspaces = {
         {
           name = "notes",

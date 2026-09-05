@@ -44,7 +44,7 @@ $font = 'Segoe UI Variable, Segoe UI'
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <TextBlock Text="{Binding}" Foreground="$fg" FontFamily="$font" FontSize="13"
-                       TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,8"/>
+                       TextWrapping="Wrap" TextAlignment="Left" Margin="0,0,0,8"/>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
@@ -61,8 +61,8 @@ $window = [Windows.Markup.XamlReader]::Load($reader)
 # Todo list, parsed by the same script the bar widget uses.
 $tasks = @()
 $summary = & (Join-Path $PSScriptRoot 'todo-summary.ps1') | ConvertFrom-Json
-if ($summary.count -gt 0) {
-    $tasks = $summary.list -split "`n" | ForEach-Object { $_ -replace '^\s*-\s*', '' }
+if ($summary.list -and $summary.list -ne 'Nothing to do') {
+    $tasks = $summary.list -split "`n"
 }
 
 $todosCtrl = $window.FindName('Todos')

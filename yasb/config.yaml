@@ -268,8 +268,8 @@ widgets:
       image_path: 
         # - "D:\\OneDrive\\Pictures\\Wallpapers\\Themes\\Kanagawa"
         - "C:\\Users\\daani\\Documents\\BackgroundPic"
-      change_automatically: false # Automatically change wallpaper
-      update_interval: 60 # If change_automatically is true, update interval in seconds
+      change_automatically: true # Automatically change wallpaper
+      update_interval: 600 # If change_automatically is true, update interval in seconds
       engine:
         enabled: true
         animation: "circle" # circle/slide_top/diamond/split

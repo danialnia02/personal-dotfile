@@ -1,20 +1,39 @@
 # Feeds the yasb todo widget: the bar label (task count) and the hover tooltip (task list).
-# Output: {"count": <n>, "list": "<one task per line>"}
+# Output: {"count": <n>, "list": "<numbered tasks from ## Today, plus an 'elsewhere' count>"}
 $ErrorActionPreference = 'Stop'
 
-$notes = "$env:USERPROFILE\Documents\notes\things-to-do.md"
+$notes = "$env:USERPROFILE\Documents\notes\inbox\tasks.md"
 
-$tasks = @()
+$todayTasks = @()
+$elsewhereCount = 0
 if (Test-Path $notes) {
-    # "- [ ] task" is unchecked; "- [x] task" is done.
-    $tasks = Get-Content $notes |
-        Where-Object { $_ -match '^\s*[-*]\s*\[\s\]\s*(.+)$' } |
-        ForEach-Object { $matches[1].Trim() }
+    $inToday = $false
+    foreach ($line in Get-Content $notes) {
+        $trimmed = $line.Trim()
+        if ($trimmed -match '^#{1,6}\s+Today\s*$') {
+            $inToday = $true
+            continue
+        }
+        if ($inToday -and ($trimmed -match '^#{1,6}\s' -or $trimmed -match '^-{3,}$')) {
+            $inToday = $false
+        }
+        # "- [ ] task" is unchecked; "- [x] task" is done.
+        if ($line -match '^\s*[-*]\s*\[\s\]\s*(.+)$') {
+            if ($inToday) { $todayTasks += $matches[1].Trim() } else { $elsewhereCount++ }
+        }
+    }
+}
+
+$listLines = @()
+for ($i = 0; $i -lt $todayTasks.Count; $i++) { $listLines += "$($i + 1). $($todayTasks[$i])" }
+if ($elsewhereCount -gt 0) {
+    $listLines += ''
+    $listLines += "$elsewhereCount more task(s) elsewhere."
 }
 
 $payload = [ordered]@{
-    count = $tasks.Count
-    list  = if ($tasks.Count) { ($tasks | ForEach-Object { "- $_" }) -join "`n" } else { 'Nothing to do' }
+    count = $todayTasks.Count
+    list  = if ($listLines.Count) { $listLines -join "`n" } else { 'Nothing to do' }
 }
 
 $payload | ConvertTo-Json -Compress
