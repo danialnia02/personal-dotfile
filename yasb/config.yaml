@@ -271,7 +271,7 @@ widgets:
       change_automatically: true # Automatically change wallpaper
       update_interval: 600 # If change_automatically is true, update interval in seconds
       engine:
-        enabled: true
+        enabled: false # disabled: crashes yasb (AttributeError on '_progress' in WallpaperEngine.paintEvent)
         animation: "circle" # circle/slide_top/diamond/split
       gallery:
         enabled: true
