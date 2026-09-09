@@ -67,7 +67,7 @@ widgets:
       - separator: true
       - title: Start Komorebi
         command: komorebic
-        args: ["start", "--whkd"]
+        args: ["start", "--whkd", "--clean-state"]
         show_window: false
       - title: Stop Komorebi
         command: komorebic
@@ -75,7 +75,7 @@ widgets:
         show_window: false
       - title: Reload Komorebi
         command: cmd.exe
-        args: ["/c", "komorebic stop --whkd && komorebic start --whkd"]
+        args: ["/c", "komorebic stop --whkd && komorebic start --whkd --clean-state"]
         show_window: false
       - separator: true
       - title: Pomodoro 15 min
