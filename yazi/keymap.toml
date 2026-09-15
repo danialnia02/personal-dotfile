@@ -1,14 +1,19 @@
-[[manager.prepend_keymap]]
-on  = "cz"
+[[mgr.prepend_keymap]]
+on  = [ "c", "z" ]
 run = 'shell --confirm "7z a \"%*\".zip %*"'
 desc = "Compress selected to zip"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on  = "e"
 run = 'shell --orphan "explorer ."'
 desc = "Open current directory in File Explorer"
 
-[[manager.prepend_keymap]]
-on  = "gw"
+[[mgr.prepend_keymap]]
+on  = [ "g", "w" ]
 run = 'shell --confirm "echo hello"'
 desc = "Open new terminal tab in current directory"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "1" ]
+run  = 'cd "~/Desktop/school/y3"'
+desc = "Go to y3"
