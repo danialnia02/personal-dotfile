@@ -6,6 +6,7 @@ alt + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowSt
 alt + shift + o         : komorebic reload-configuration
 
 alt + shift + i         : komorebic toggle-shortcuts
+alt + shift + b         : komorebic border disable; komorebic border enable # force-clear a stuck border
 
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
