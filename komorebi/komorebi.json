@@ -34,7 +34,7 @@
       "workspaces": [
         {
           "name": "I",
-          "layout": "RightMainVerticalStack"
+          "layout": "Grid"
         },
         {
           "name": "II",
@@ -50,6 +50,18 @@
         {
           "name": "III",
           "layout": "UltrawideVerticalStack"
+        },
+        {
+          "name": "IV",
+          "layout": "Grid"
+        },
+        {
+          "name": "V",
+          "layout": "Grid"
+        },
+        {
+          "name": "VI",
+          "layout": "Grid"
         }
       ]
     },
@@ -58,7 +70,7 @@
       "workspaces": [
         {
           "name": "Home",
-          "layout": "BSP"
+          "layout": "Grid"
         },
         {
           "name": "2",
