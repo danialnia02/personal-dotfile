@@ -127,12 +127,33 @@ M.nvdash = {
   load_on_startup = true,
 }
 
+-- Caps lock state via Win32 GetKeyState (nvim has no native API for it).
+-- Timer only redraws the tabline when the state flips.
+local caps_on = function() return false end
+if jit.os == "Windows" then
+  local ffi = require "ffi"
+  pcall(ffi.cdef, "short GetKeyState(int nVirtKey);")
+  caps_on = function() return bit.band(ffi.C.GetKeyState(0x14), 1) == 1 end
+  if not _G._caps_timer then
+    local last = caps_on()
+    _G._caps_timer = vim.uv.new_timer()
+    _G._caps_timer:start(250, 250, vim.schedule_wrap(function()
+      local now = caps_on()
+      if now ~= last then
+        last = now
+        vim.cmd "redrawtabline"
+      end
+    end))
+  end
+end
+
 M.ui = {
   tabufline = {
     order = { "treeOffset", "buffers", "tabs", "datetime" },
     modules = {
       datetime = function()
-        return "%#TbBufOff# " .. os.date("%H:%M  %d/%m/%Y") .. " "
+        local caps = caps_on() and "%#TbBufOn#caps on" or "%#TbBufOff#caps off"
+        return caps .. "  %#TbBufOff#" .. os.date("%H:%M  %d/%m/%Y") .. " "
       end,
     },
   },
