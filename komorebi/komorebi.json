@@ -38,14 +38,7 @@
         },
         {
           "name": "II",
-          "layout": "Columns",
-          "initial_workspace_rules": [
-            {
-              "kind": "Exe",
-              "id": "Spotify.exe",
-              "matching_strategy": "Equals"
-            }
-          ]
+          "layout": "Columns"
         },
         {
           "name": "III",
@@ -61,7 +54,14 @@
         },
         {
           "name": "VI",
-          "layout": "Grid"
+          "layout": "Grid",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Spotify.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
         }
       ]
     },
