@@ -95,6 +95,10 @@ widgets:
         command: yasbc
         args: ["reload"]
         show_window: false
+      - title: Stop YASB
+        command: yasbc
+        args: ["stop"]
+        show_window: false
       system_menu: false
       power_menu: false
       blur: true
