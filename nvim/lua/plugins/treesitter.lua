@@ -14,5 +14,6 @@ return {
   },
   config = function()
     require("nvim-treesitter").setup {}
+    require("nvim-treesitter.configs").setup { ensure_installed = { "sql" } }
   end,
 }
