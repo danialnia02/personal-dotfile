@@ -1,5 +1,4 @@
 # Sets the pomodoro widget's work_duration in config.yaml.
-# yasb has watch_config enabled, so it picks the change up on save.
 # Note: reloading restarts the widget, so this resets a running timer.
 param(
     [Parameter(Mandatory)]
@@ -18,3 +17,5 @@ $updated = [regex]::Replace($content, $pattern, { param($m) $m.Groups[1].Value +
 if ($updated -ne $content) {
     Set-Content -Path $config -Value $updated -NoNewline
 }
+# config.yaml is a symlink; the watcher doesn't see writes to its target, so reload explicitly.
+yasbc reload
