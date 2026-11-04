@@ -324,7 +324,7 @@ widgets:
   pomodoro:
     type: yasb.pomodoro.PomodoroWidget
     options:
-      work_duration: 60
+      work_duration: 30
       show_notification: true
       auto_start_breaks: false
       auto_start_work: false
